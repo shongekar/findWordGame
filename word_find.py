@@ -77,18 +77,30 @@ def select_letters():
             print("Please input minimum three char word..")
 
         elif len(userInput) >= 3:
-            print("i m here")
-            # check if word is recognised
-            url = "https://api.wordnik.com/v4/word.json/{}/scrabbleScore?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5".format(userInput)
-            header = {"content-type": "application/json"}
-            response = requests.get(url, headers=header)
-            if response.status_code == 200:
-                used_words.append(userInput)
-                resDict = response.json()
-                print(resDict)
-            else:
-                print(response.json())
-                print("not reco")
+            # check entered word characters are from randomally generated list.
+            print(userInput)
+            print(innerList)
+            for x in userInput:
+                if all(x in userInput for x in innerList):
+                    print(x)
+                else:
+                    print("not found : ", x)
+            # userInput = userInput.lower()
+            # print("i m here")
+            # # check if word is recognised
+            # print(userInput)
+            # url = "https://api.wordnik.com/v4/word.json/{}/scrabbleScore?api_key=goeym0hbwfzzo2ldsk1ztbmr2z3nruz7al6k612b9u38a00j5".format(userInput)
+            # print("URL : ", url)
+            # header = {"content-type": "application/json"}
+            # response = requests.get(url, headers=header)
+            # print("response : ", response)
+            # if response.status_code == 200:
+            #     used_words.append(userInput)
+            #     resDict = response.json()
+            #     print(resDict)
+            # else:
+            #     print(response.json())
+            #     print("not reco")
 
 def createRandomLetters(innerList):
     for i in range(9):
